@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def run(playwright):
-    # 1. 사용자 데이터를 저장할 폴더 (실제 브라우저처럼 쿠키/세션/배율 유지용)
+    # # 1. 사용자 데이터를 저장할 폴더 (실제 브라우저처럼 쿠키/세션/배율 유지용)
     user_data_path = os.path.join(os.getcwd(), "chrome_profile")
 
     # 환경 변수에서 아이디와 비밀번호 가져오기
@@ -16,12 +16,6 @@ def run(playwright):
     user_id_val = os.getenv("USER_ID")
     user_pw_val = os.getenv("USER_PW")
 
-    # 창 최대화 추가 및 모든 동작 사이 2초 딜레이
-    # browser = playwright.chromium.launch(
-    #     headless=False, 
-    #     args=["--start-maximized"], slow_mo=2000
-    # )
-    
     # 창 최대화 추가 및 모든 동작 사이 2초 딜레이
     context = playwright.chromium.launch_persistent_context(
         user_data_dir=user_data_path,
@@ -110,7 +104,6 @@ def run(playwright):
 # 랜덤 시간 선택
     # 1. 'disable' 클래스가 포함되지 않은 시간 요소들만 찾습니다.
     # timeArea 안에서 class에 'disable'이 없는 p 태그를 모두 가져옵니다.
-    # available_times = page.locator("#timeArea p:not(.disable)")
     available_times = page.locator("#timeArea p.reservation-time:not(.pass-time)")
     page.wait_for_timeout(500)
     count = available_times.count()
