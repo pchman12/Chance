@@ -1,0 +1,3 @@
+# .gitignore 파일 내용
+.env
+**/chrome_profile/
