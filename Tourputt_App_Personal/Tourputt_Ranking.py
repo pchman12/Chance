@@ -95,7 +95,7 @@ class TourputtTest:
         width = size['width']
         height = size['height']
 
-        # 좌표 설정: 아래(80%) -> 위(20%)
+        # 좌표 설정: 위(20%) -> 아래(80%)
         center_x = 500
         area_top = 821
         area_bottom = 2115
@@ -170,8 +170,8 @@ class TourputtTest:
         height = size['height']
 
         # 좌표 설정: 아래(80%) -> 위(20%)
-        center_x = 500
-        area_top = 700
+        center_x = 562
+        area_top = 1166
         area_bottom = 1900
         
         start_y = area_top + 100
@@ -227,15 +227,28 @@ if __name__ == "__main__":
         
         # Raking Space 최하단까지 Scroll
         time.sleep(3)
-        tester.previous_scroll_down()
-        tester.previous_scroll_down()
+        for _ in range(2):
+            tester.previous_scroll_down()
 
         # Raking Space 최상단까지 Scroll
         time.sleep(3)
-        tester.previous_scroll_up()
-        tester.previous_scroll_up()
+        for _ in range(4):
+            tester.previous_scroll_up()
+
+        # View My Ranking Records 선택
+        time.sleep(3)
+        driver.tap([(926, 286)])
+
+        # 뒤로가기 버튼 선택
+        time.sleep(3)
+        driver.tap([(83, 138)])
+
+        # 뒤로가기 버튼 선택
+        time.sleep(3)
+        driver.tap([(83, 138)])
 
     except Exception as e:
         print(f"테스트 중 에러 발생: {e}")
-    # finally:
-    #     tester.teardown()
+
+    finally:
+        tester.teardown()
